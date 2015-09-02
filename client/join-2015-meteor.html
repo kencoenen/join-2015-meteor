@@ -1,0 +1,27 @@
+<head>
+    <title>JOIN 2015</title>
+</head>
+
+<body>
+<div class="container">
+    <header>
+        <h1>JOIN 2015</h1>
+    </header>
+
+    <ul>
+      {{#each talks}}
+        {{> talk}}
+      {{/each}}
+    </ul>
+</div>
+</body>
+
+<template name="talk">
+    <li>
+        {{title}}
+
+        {{#if votes}}
+            <span>{{votes}} votes</span>
+        {{/if}}
+    </li>
+</template>
