@@ -99,7 +99,7 @@ if (Meteor.isClient) {
         votes: 0
       },
       {
-        title: "Dokker",
+        title: "Docker",
         votes: 1
       }
     ]
@@ -236,7 +236,7 @@ if (Talks.find({}).count() < 1) {
     Talks.insert({ title: 'App Performance Monitor', votes: 0});
     Talks.insert({ title: 'Dokku', votes: 0});
     Talks.insert({ title: 'Digital Media Integration', votes: 0});
-    Talks.insert({ title: 'Dokker', votes: 0});
+    Talks.insert({ title: 'Docker', votes: 0});
 }
 ```
 
@@ -265,7 +265,7 @@ Template.talk.events({
 
 ## Deploying the application
 
-Now we're ready to deploy our application to ```meteor.com```.
+After regsitering on ```meteor.com```, we're ready to deploy our application. Enter your email and password when prompted.
 
 ```
 meteor deploy join-2015.meteor.com
