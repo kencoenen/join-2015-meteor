@@ -265,7 +265,7 @@ Template.talk.events({
 
 ## Deploying the application
 
-After regsitering on ```meteor.com```, we're ready to deploy our application. Enter your email and password when prompted.
+After registering on ```meteor.com```, we're ready to deploy our application. Enter your email and password when prompted.
 
 ```
 meteor deploy join-2015.meteor.com
