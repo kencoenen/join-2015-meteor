@@ -221,3 +221,52 @@ Now try to insert and remove talks with the following commands and see how the U
 db.talks.insert({ title: “Meteor”, votes: 0});
 db.talks.remove({});
 ```
+## Load talks on startup
+
+We’re now going to load the talks when the server boots. We do this by creating a JavaScript file in the ```server``` folder. The name is not important. I called it ```fixtures.js```. Give it the following content:
+
+```
+if (Talks.find({}).count() < 1) {
+    Talks.insert({ title: 'Netflix', votes: 0});
+    Talks.insert({ title: 'IoT', votes: 0});
+    Talks.insert({ title: 'Polymer', votes: 0});
+    Talks.insert({ title: 'Ionic', votes: 0});
+    Talks.insert({ title: 'Meteor', votes: 0});
+    Talks.insert({ title: 'WeatherGenie', votes: 0});
+    Talks.insert({ title: 'App Performance Monitor', votes: 0});
+    Talks.insert({ title: 'Dokku', votes: 0});
+    Talks.insert({ title: 'Digital Media Integration', votes: 0});
+    Talks.insert({ title: 'Dokker', votes: 0});
+}
+```
+
+When we execute a ```db.talks.remove({});``` through the mongo terminal, the talks are removed and they remain empty. When we restart the application and the server starts, the talks are created again.
+
+## Upvoting a talk
+
+We now want a user to be able to upvote the talk that he/she is attending. We’ll make the list item clickable and increment the talk's ```votes``` attribute in the database.
+
+Add the following event to the talk template.
+
+```javascript
+Template.talk.events({
+    "click li": function () {
+        if (Session.get('voted') == null) {
+            Talks.update(this._id, {
+                $set: {votes: this.votes + 1}
+            });
+            Session.set('voted', true);
+        } else {
+            alert('Already voted!');
+        }
+    }
+});
+```
+
+## Deploying the application
+
+Now we're ready to deploy our application to ```meteor.com```.
+
+```
+meteor deploy join-2015.meteor.com
+```
