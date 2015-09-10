@@ -191,5 +191,33 @@ You can now try to change something in your code. You will see that the page aut
 
 ## Retrieve the talks from a database
 
+Add talks collection to retrieve talks from MongoDB. Create a ```collection.js``` file in the ```lib/collections``` folder. Scripts in the ```lib``` folder are loaded before any other script. This file has the following content.
 
+```javascript
+Talks = new Mongo.Collection("talks");
+```
 
+The talks array in our client JS is replaced by a function which queries the database and returns a sorted list of talks.
+
+```javascript
+...
+function () {
+  return Talks.find({}, {sort: {votes: -1}});
+}
+...
+```
+
+## Access the database instance via ```meteor mongo```
+
+Talks are now empty, we can add one via the Meteor Tool (leave the UI open). Open a new terminal window and type in the following to connect to the MongoDB instance.
+
+```
+meteor mongo
+```
+
+Now try to insert and remove talks with the following commands and see how the UI updates itself immediately!
+
+```
+db.talks.insert({ title: “Meteor”, votes: 0});
+db.talks.remove({});
+```
